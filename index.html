@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>色彩配對記憶遊戲</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="start-screen" class="modal show">
+        <div class="modal-content start-content">
+            <h1 class="main-title">色彩配對記憶遊戲</h1>
+            <p>挑戰你的記憶力，找出所有相同的顏色！</p>
+            <button id="start-btn" class="primary-btn">開始遊戲</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>色彩配對記憶遊戲</h1>
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="label">步數：</span>
+                    <span id="moves">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="label">配對：</span>
+                    <span id="matches">0</span> / 10
+                </div>
+                <div class="stat-item">
+                    <span class="label">金幣：</span>
+                    <span id="money" class="money-text">0</span>
+                </div>
+            </div>
+            <div class="header-btns">
+                <button id="reset-btn">重新開始</button>
+                <button id="shop-btn">商店</button>
+            </div>
+        </header>
+
+        <main class="game-board" id="game-board">
+            <!-- Cards will be generated here by JavaScript -->
+        </main>
+
+        <div id="shop-modal" class="modal">
+            <div class="modal-content shop-content">
+                <h2>商店</h2>
+                <div class="shop-money">目前金幣：<span id="shop-current-money">0</span></div>
+                <div class="item-list">
+                    <div class="shop-item" data-price="500">
+                        <div class="item-icon">🍀</div>
+                        <div class="item-name">幸運符</div>
+                        <div class="item-price">500 金幣</div>
+                        <button class="buy-btn">購買</button>
+                    </div>
+                    <div class="shop-item" data-price="1000">
+                        <div class="item-icon">⏳</div>
+                        <div class="item-name">時間沙漏</div>
+                        <div class="item-price">1000 金幣</div>
+                        <button class="buy-btn">購買</button>
+                    </div>
+                    <div class="shop-item" data-price="2000">
+                        <div class="item-icon">💎</div>
+                        <div class="item-name">神秘寶石</div>
+                        <div class="item-price">2000 金幣</div>
+                        <button class="buy-btn">購買</button>
+                    </div>
+                </div>
+                <button id="back-to-game-btn" class="primary-btn">返回遊戲</button>
+            </div>
+        </div>
+        <div id="win-modal" class="modal">
+            <div class="modal-content">
+                <h2>恭喜獲勝！</h2>
+                <p>你總共花了 <span id="final-moves">0</span> 步完成挑戰。</p>
+                <button id="play-again-btn">再玩一次</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

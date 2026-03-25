@@ -1,0 +1,6 @@
+conda_env_manager/
+knowledge_transfer/
+python_venv_manager/
+test_server_management/
+web_development/
+.DS_Store
