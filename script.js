@@ -7,8 +7,16 @@ let gameCards = [...colors, ...colors];
 let flippedCards = [];
 let matchedPairs = 0;
 let moves = 0;
-let money = 0;
+let money = localStorage.getItem('gameMoney') !== null ? parseInt(localStorage.getItem('gameMoney')) : 3000;
+let inventory = JSON.parse(localStorage.getItem('gameInventory')) || [];
 let isLockBoard = false;
+
+// Ensure initial value is saved if new
+if (localStorage.getItem('gameMoney') === null) {
+    localStorage.setItem('gameMoney', money);
+}
+
+console.log('遊戲啟動:', { money, inventoryLength: inventory.length });
 
 const gameBoard = document.getElementById('game-board');
 const movesDisplay = document.getElementById('moves');
@@ -16,8 +24,12 @@ const matchesDisplay = document.getElementById('matches');
 const moneyDisplay = document.getElementById('money');
 const resetBtn = document.getElementById('reset-btn');
 const shopBtn = document.getElementById('shop-btn');
+const chestBtn = document.getElementById('chest-btn');
 const winModal = document.getElementById('win-modal');
 const shopModal = document.getElementById('shop-modal');
+const chestModal = document.getElementById('chest-modal');
+const inventoryList = document.getElementById('inventory-list');
+const closeChestBtn = document.getElementById('close-chest-btn');
 const shopCurrentMoney = document.getElementById('shop-current-money');
 const backToGameBtn = document.getElementById('back-to-game-btn');
 const startScreen = document.getElementById('start-screen');
@@ -57,7 +69,7 @@ function initGame() {
     
     movesDisplay.textContent = moves;
     matchesDisplay.textContent = matchedPairs;
-    money = 0;
+    // Money is persistent now, handle display only
     moneyDisplay.textContent = money;
     winModal.style.display = 'none';
 
@@ -100,12 +112,47 @@ function handleMatch() {
     
     // Earn money on match
     money += 100;
+    saveMoney();
     moneyDisplay.textContent = money;
     
     flippedCards = [];
 
     if (matchedPairs === colors.length) {
         setTimeout(showWinModal, 500);
+    }
+}
+
+function saveMoney() {
+    console.log('儲存金幣:', money);
+    localStorage.setItem('gameMoney', money);
+}
+
+function saveInventory() {
+    console.log('儲存寶箱:', inventory);
+    localStorage.setItem('gameInventory', JSON.stringify(inventory));
+}
+
+function updateInventoryUI() {
+    inventoryList.innerHTML = '';
+    const totalSlots = 12; // 3x4 網格
+    
+    for (let i = 0; i < totalSlots; i++) {
+        const slot = document.createElement('div');
+        slot.classList.add('inventory-slot');
+        
+        if (inventory[i]) {
+            slot.classList.add('occupied');
+            const item = inventory[i];
+            const itemDiv = document.createElement('div');
+            itemDiv.classList.add('inventory-item');
+            itemDiv.innerHTML = `
+                <span class="icon">${item.icon}</span>
+                <span class="name">${item.name}</span>
+            `;
+            slot.appendChild(itemDiv);
+        }
+        
+        inventoryList.appendChild(slot);
     }
 }
 
@@ -148,8 +195,15 @@ document.querySelectorAll('.buy-btn').forEach(btn => {
 
         if (money >= price) {
             money -= price;
+            saveMoney();
             moneyDisplay.textContent = money;
             shopCurrentMoney.textContent = money;
+            
+            // Add to inventory
+            const icon = item.querySelector('.item-icon').textContent;
+            inventory.push({ name: itemName, icon: icon });
+            saveInventory();
+            
             alert(`成功購買 ${itemName}！`);
         } else {
             alert('金幣不足！');
@@ -164,3 +218,17 @@ function welcome() {
 }
 
 welcome();
+
+// Chest Logic
+chestBtn.addEventListener('click', () => {
+    console.log('開啟寶箱, 現有物品:', inventory);
+    updateInventoryUI();
+    chestModal.classList.add('show');
+});
+
+closeChestBtn.addEventListener('click', () => {
+    chestModal.classList.remove('show');
+});
+
+// Initial display of persistent money
+moneyDisplay.textContent = money;

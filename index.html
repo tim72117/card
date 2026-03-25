@@ -38,12 +38,23 @@
             <div class="header-btns">
                 <button id="reset-btn">重新開始</button>
                 <button id="shop-btn">商店</button>
+                <button id="chest-btn">寶箱</button>
             </div>
         </header>
 
         <main class="game-board" id="game-board">
             <!-- Cards will be generated here by JavaScript -->
         </main>
+
+        <div id="chest-modal" class="modal">
+            <div class="modal-content chest-content">
+                <h2>我的寶箱</h2>
+                <div id="inventory-list" class="inventory-list">
+                    <!-- Inventory items will be listed here -->
+                </div>
+                <button id="close-chest-btn" class="primary-btn">返回遊戲</button>
+            </div>
+        </div>
 
         <div id="shop-modal" class="modal">
             <div class="modal-content shop-content">

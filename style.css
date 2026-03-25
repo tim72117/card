@@ -102,6 +102,16 @@ h1 {
     box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
 }
 
+#chest-btn {
+    background: #10b981;
+}
+
+#chest-btn:hover {
+    background: #059669;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+}
+
 .game-board {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -218,6 +228,66 @@ h1 {
     color: #fcd34d;
     margin-bottom: 30px;
     font-weight: bold;
+}
+
+.chest-content {
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.15); /* 更亮的背景 */
+    border: 1px solid rgba(255, 255, 255, 0.4); /* 更明顯的邊框 */
+    backdrop-filter: blur(20px);
+}
+
+.inventory-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4x3 網格 */
+    gap: 15px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
+}
+
+.inventory-slot {
+    aspect-ratio: 1/1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px dashed rgba(255, 255, 255, 0.2); /* 格線感 */
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.inventory-slot.occupied {
+    background: rgba(255, 255, 255, 0.1);
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.inventory-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+}
+
+.inventory-item .icon {
+    font-size: 2rem;
+}
+
+.inventory-item .name {
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+.empty-inventory {
+    grid-column: span 2;
+    color: var(--text-secondary);
+    padding: 20px;
 }
 
 .item-list {
