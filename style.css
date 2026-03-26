@@ -71,7 +71,7 @@ h1 {
     gap: 15px;
 }
 
-#reset-btn, #shop-btn {
+#reset-btn, #shop-btn, #chest-btn {
     color: white;
     border: none;
     padding: 10px 25px;
@@ -154,7 +154,7 @@ h1 {
 
 .card-front::after {
     content: '?';
-    font-size: 2.2rem;
+    font-size: 3.5rem;
     color: #84cc16; /* 亮綠色問號 */
     text-shadow: 0 0 10px rgba(132, 204, 22, 0.5);
     font-weight: bold;
@@ -190,6 +190,8 @@ h1 {
     border: 1px solid rgba(255, 255, 255, 0.1);
     max-width: 500px;
     width: 90%;
+    max-height: 90vh; /* 避免超過畫面高度 */
+    overflow-y: auto; /* 內容過多時顯示捲軸 */
     text-align: center;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     animation: modalIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -230,6 +232,76 @@ h1 {
     font-weight: bold;
 }
 
+#sell-confirm-modal {
+    z-index: 1100; /* 高於原本的寶箱/商店彈窗 (1000) */
+}
+
+.sell-confirm-content {
+    max-width: 400px;
+}
+
+.sell-item-preview {
+    margin: 20px 0;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+}
+
+.sell-input-group {
+    margin: 25px 0;
+}
+
+.price-hint {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+#sell-price-input {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 15px;
+    color: white;
+    font-size: 1.5rem;
+    text-align: center;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+#sell-price-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.modal-actions .primary-btn, .modal-actions .secondary-btn {
+    flex: 1;
+    padding: 12px;
+}
+
+.secondary-btn {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-secondary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.secondary-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
 .chest-content {
     max-width: 600px;
     background: rgba(255, 255, 255, 0.15); /* 更亮的背景 */
@@ -239,12 +311,14 @@ h1 {
 
 .inventory-list {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4x3 網格 */
-    gap: 15px;
-    margin-bottom: 30px;
-    padding: 20px;
+    grid-template-columns: repeat(5, 1fr); /* 5x3 網格 */
+    gap: 10px;
+    margin-bottom: 25px;
+    padding: 12px;
     background: rgba(0, 0, 0, 0.2);
     border-radius: 16px;
+    min-height: 280px;
+    overflow: hidden;
 }
 
 .inventory-slot {
@@ -282,6 +356,26 @@ h1 {
     font-weight: bold;
     color: var(--text-secondary);
     text-align: center;
+}
+
+.sell-btn {
+    margin-top: 5px;
+    background: rgba(244, 63, 94, 0.2);
+    color: #fb7185;
+    border: 1px solid #fb7185;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: auto;
+    font-weight: bold;
+}
+
+.sell-btn:hover {
+    background: #fb7185;
+    color: white;
+    transform: scale(1.1);
 }
 
 .empty-inventory {

@@ -73,6 +73,12 @@
                         <div class="item-price">500 金幣</div>
                         <button class="buy-btn">購買</button>
                     </div>
+                    <div class="shop-item" data-price="800">
+                        <div class="item-icon">🧪</div>
+                        <div class="item-name">魔法藥水</div>
+                        <div class="item-price">800 金幣</div>
+                        <button class="buy-btn">購買</button>
+                    </div>
                     <div class="shop-item" data-price="1000">
                         <div class="item-icon">⏳</div>
                         <div class="item-name">時間沙漏</div>
@@ -85,8 +91,37 @@
                         <div class="item-price">2000 金幣</div>
                         <button class="buy-btn">購買</button>
                     </div>
+                    <div class="shop-item" data-price="5000">
+                        <div class="item-icon">🛡️</div>
+                        <div class="item-name">傳奇護盾</div>
+                        <div class="item-price">5000 金幣</div>
+                        <button class="buy-btn">購買</button>
+                    </div>
+                    <div class="shop-item" data-price="10000">
+                        <div class="item-icon">⭐</div>
+                        <div class="item-name">超級星星</div>
+                        <div class="item-price">10000 金幣</div>
+                        <button class="buy-btn">購買</button>
+                    </div>
                 </div>
                 <button id="back-to-game-btn" class="primary-btn">返回遊戲</button>
+            </div>
+        </div>
+        <div id="sell-confirm-modal" class="modal">
+            <div class="modal-content sell-confirm-content">
+                <h2>出售商品</h2>
+                <div class="sell-item-preview">
+                    <div id="sell-item-icon" class="item-icon"></div>
+                    <div id="sell-item-name" class="item-name"></div>
+                </div>
+                <div class="sell-input-group">
+                    <p class="price-hint">建議售價: <span id="sell-base-price">0</span> 金幣</p>
+                    <input type="number" id="sell-price-input" placeholder="請輸入售價" min="1">
+                </div>
+                <div class="modal-actions">
+                    <button id="confirm-sell-btn" class="primary-btn">確認出售</button>
+                    <button id="cancel-sell-btn" class="secondary-btn">取消</button>
+                </div>
             </div>
         </div>
         <div id="win-modal" class="modal">
@@ -97,7 +132,7 @@
             </div>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script src="script.js?v=9"></script>
     <script>
         if ("serviceWorker" in navigator) {
             window.addEventListener("load", () => {
