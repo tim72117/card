@@ -303,9 +303,9 @@ h1 {
 }
 
 .chest-content {
-    max-width: 600px;
-    background: rgba(255, 255, 255, 0.15); /* 更亮的背景 */
-    border: 1px solid rgba(255, 255, 255, 0.4); /* 更明顯的邊框 */
+    max-width: 800px; /* 從 600px 加大至 800px */
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(20px);
 }
 

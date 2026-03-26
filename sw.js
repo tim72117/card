@@ -1,4 +1,4 @@
-const CACHE_NAME = "color-memory-v9";
+const CACHE_NAME = "color-memory-v10";
 const ASSETS = [
   "./",
   "./index.html",
